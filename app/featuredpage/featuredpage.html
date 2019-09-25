@@ -1,0 +1,31 @@
+<div class="featured-movie">
+    <div class="featured-movie__content">
+        <div class="featured-movie__innercontent">
+            <h2>Featured Movies</h2>
+            <div class="featured-movie__innercontent-text" ng-repeat="movie in $ctrl.movieList.Search | filter: searchMovieTitle | limitTo:pageSize">
+                <div ng-if="!movieDetail.Error">
+                    <span class="featured-movie__innercontent-text-alignment"><img src="{{movie.Poster}}" width="170" height="200"></span>
+                    <p class="featured-movie__title featured-movie__boldText">{{movie.Title}}</p>
+                    <div class="featured-movie__innercontent-text-alignment">
+                        <p><span class="featured-movie__boldText">Year: </span><span>{{movie.Year}}</span></p>
+                        <p><span class="featured-movie__boldText">ImdbRating: </span><span>{{movie.imdbRating}}</span></p>
+                        <p><span class="featured-movie__boldText">Type: </span><span>{{movie.Type}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <p ng-if="movieDetail.Error" class="featured-movie__textAlign search-movie__boldText">No movie available for your search</p>
+        </div>
+    </div>
+    <div class="featured-movie__navbar">
+        <div class="featured-movie__innernavbar">
+            <h4>
+                Filter Movie
+            </h4>
+            <input id="filter" type="search" placeholder="Movie Title" ng-model='searchMovieTitle' />
+            <div>
+                <label for="post" class="featured-movie__boldText">No.of movies per page: </label>
+                <input type="text" id="post" ng-model='pageSize' ng-init="pageSize=$ctrl.pageSize" />
+            </div>
+        </div>
+    </div>
+</div>

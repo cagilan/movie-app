@@ -1,0 +1,10 @@
+<menu id="nav">
+        <ul>
+            <li><a ui-sref="app.searchpage" ng-click="$ctrl.toggleClass(0)" ng-class="{active: 0 === $ctrl.selectedIndex}">Search Movie</a></li>
+            <li><a ui-sref="app.featuredpage" ng-click="$ctrl.toggleClass(1)" ng-class="{active: 1 === $ctrl.selectedIndex}">Featured Movie</a></li>
+        </ul>
+</menu>
+
+<div class="container-fluid">
+    <ui-view></ui-view>
+</div>

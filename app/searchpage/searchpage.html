@@ -1,0 +1,86 @@
+<div class="search-movie">
+    <div class="search-movie__content">
+        <div class="search-movie__innercontent">
+            <form class="search-movie__navbar-form search-movie__navbar-right searchForm">
+                <div class="search-movie__form-group">
+                    <input type="search" class="form-control" placeholder="Search movies" ng-model='searchMovie'>
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="$ctrl.getMovie(searchMovie)">Submit</button>
+            </form>
+            <h2 ng-if="$ctrl.isMoviePlaying">Now Playing</h2>
+            <div class="search-movie__innercontent-container" ng-repeat="movieDetail in $ctrl.searchedMovieList">
+                <div ng-if="!movieDetail.Error">
+                    <span class="search-movie__innercontent-text-alignment"><img src="{{movieDetail.Poster}}" alt="Movie Poster" width="250" height="390"></span>
+                    <div class="search-movie__text-alignment">
+                        <p class="search-movie__title search-movie__boldText">{{movieDetail.Title}}</p>
+                        <p><span class="search-movie__boldText">Year: </span><span>{{movieDetail.Year}}</span></p>
+                        <p><span class="search-movie__boldText">Rated: </span><span>{{movieDetail.Rated}}</span></p>
+                        <p><span class="search-movie__boldText">Released: </span><span>{{movieDetail.Released}}</span></p>
+                        <p><span class="search-movie__boldText">Runtime: </span><span>{{movieDetail.Runtime}}</span></p>
+                        <p><span class="search-movie__boldText">Director: </span><span>{{movieDetail.Director}}</span></p>
+                        <p><span class="search-movie__boldText">Awards: </span><span>{{movieDetail.Awards}}</span></p>
+                        <p><span class="search-movie__boldText">ImdbRating: </span><span>{{movieDetail.imdbRating}}</span></p>
+                        <p><span class="search-movie__boldText">ImdbVotes: </span><span>{{movieDetail.imdbVotes}}</span></p>
+                        <p><span class="search-movie__boldText">Type: </span><span>{{movieDetail.Type}}</span></p>
+                        <p><span class="search-movie__boldText">Plot: </span><span>{{movieDetail.Plot | limitTo: movieDetail.limit ? movieDetail.Plot.length: 100}}<span class="search-movie__ellipsis" ng-click="movieDetail.limit = !movieDetail.limit">{{movieDetail.limit ? '' : '...'}}</span>
+                            <a class="search-movie__ellipsis" href="" ng-click="movieDetail.limit = !movieDetail.limit">{{movieDetail.limit ? 'Show Less' : 'Show More'}}</a>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="search-movie__more_info_container">
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Genre</p>
+                                <li ng-repeat="genre in movieDetail.Genre.split(',')">
+                                    {{genre}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Writer</p>
+                                <li ng-repeat="writer in movieDetail.Writer.split(',')">
+                                    {{writer}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Actors</p>
+                                <li ng-repeat="actor in movieDetail.Actors.split(',')">
+                                    {{actor}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Language</p>
+                                <li ng-repeat="language in movieDetail.Language.split(',')">
+                                    {{language}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Country</p>
+                                <li ng-repeat="country in movieDetail.Country.split(',')">
+                                    {{country}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-movie__listview">
+                            <ul>
+                                <p class="search-movie__boldText">Ratings</p>
+                                <li ng-repeat="rating in movieDetail.Ratings">
+                                    {{rating.Source}}: {{rating.Value}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p ng-if="movieDetail.Error" class="search-movie__textAlign search-movie__boldText">No movie available for your search</p>
+            </div>
+        </div>
+    </div>
+</div>
